@@ -1,7 +1,6 @@
 /*!
- * Knockout-ESNext JavaScript library v3.5.1026
- * https://github.com/justlep/knockout-esnext
- * Forked from Knockout v3.5.1
+ * Knockout JavaScript library v3.5.1026
+ * ESNext Edition - https://github.com/justlep/knockout-esnext
  * (c) The Knockout.js team - https://knockoutjs.com/
  * License: MIT (https://www.opensource.org/licenses/mit-license.php)
  */
@@ -10,7 +9,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.ko = factory());
-}(this, (function () {
+})(this, (function () {
     const DEBUG = true; // inserted by rollup intro
     const version = '3.5.1026'; // inserted by rollup intro
 
@@ -256,7 +255,7 @@
         }
     };
 
-    const setDomNodeChildren = (domNode, childNodes) => {
+    const setDomNodeChildren$1 = (domNode, childNodes) => {
         emptyDomNode(domNode);
         if (childNodes) {
             for (let i = 0, j = childNodes.length; i < j; i++) {
@@ -324,9 +323,9 @@
         }
     };
 
-    const setDomNodeChildren$1 = (node, childNodes) => {
+    const setDomNodeChildren = (node, childNodes) => {
         if (!((node.nodeType === 8) && START_COMMENT_REGEX.test(node.nodeValue))) {
-            setDomNodeChildren(node, childNodes);
+            setDomNodeChildren$1(node, childNodes);
             return;
         }
         emptyNode(node);
@@ -759,7 +758,7 @@
         // we'll clear everything and create a single text node.
         let innerTextNode = firstChild(element);
         if (!innerTextNode || innerTextNode.nodeType !== 3 || nextSibling(innerTextNode)) {
-            setDomNodeChildren$1(element, [element.ownerDocument.createTextNode(value)]);
+            setDomNodeChildren(element, [element.ownerDocument.createTextNode(value)]);
         } else {
             innerTextNode.data = value;
         }
@@ -1188,7 +1187,7 @@
 
     const SUBSCRIBABLE_PROTOTYPE = {
         [IS_SUBSCRIBABLE]: true,
-        
+
         init(instance) {
             ((instance._subscriptions = {change: []}) && (instance._versionNumber = 1));
         },
@@ -1211,7 +1210,7 @@
                 this.beforeSubscriptionAdd(event);
             }
             let _subscriptions = this._subscriptions,
-                existingSubscriptionsForEvent = _subscriptions[event]; 
+                existingSubscriptionsForEvent = _subscriptions[event];
             if (existingSubscriptionsForEvent) {
                 existingSubscriptionsForEvent.push(subscription);
             } else {
@@ -1247,8 +1246,8 @@
         },
 
         /**
-         * Only for external use. 
-         * KO-internally use {@link hasSubscribableChanged} macro directly to save another function call 
+         * Only for external use.
+         * KO-internally use {@link hasSubscribableChanged} macro directly to save another function call
          * @param {number} versionToCheck
          * @return {boolean}
          */
@@ -1258,10 +1257,10 @@
 
         limit(limitFunction) {
             let selfIsObservable = isObservable(this),
-                ignoreBeforeChange, 
-                notifyNextChange, 
-                previousValue, 
-                pendingValue, 
+                ignoreBeforeChange,
+                notifyNextChange,
+                previousValue,
+                pendingValue,
                 didUpdate,
                 beforeChange = 'beforeChange';
 
@@ -1315,7 +1314,7 @@
         getSubscriptionsCount(event) {
             let event2subscriptions = this._subscriptions;
             if (event) {
-                let subscriptions = event2subscriptions[event]; 
+                let subscriptions = event2subscriptions[event];
                 return subscriptions ? subscriptions.length : 0;
             }
             let total = 0;
@@ -1346,7 +1345,7 @@
      * @constructor
      */
     const Subscribable = function () {
-        ((this._subscriptions = {change: []}) && (this._versionNumber = 1));
+        Subscribable.fn.init(this);
     };
 
     Subscribable.prototype = SUBSCRIBABLE_PROTOTYPE;
@@ -4498,7 +4497,7 @@
 
         let haveAddedNodesToParent = false;
         if (renderMode === 'replaceChildren') {
-            setDomNodeChildren$1(targetNodeOrNodeArray, renderedNodesArray);
+            setDomNodeChildren(targetNodeOrNodeArray, renderedNodesArray);
             haveAddedNodesToParent = true;
         } else if (renderMode === 'replaceNode') {
             replaceDomNodes(targetNodeOrNodeArray, renderedNodesArray);
@@ -5218,7 +5217,7 @@
 
                     if (shouldDisplay) {
                         if (!isInitial) {
-                            setDomNodeChildren$1(element, cloneNodes(savedNodes));
+                            setDomNodeChildren(element, cloneNodes(savedNodes));
                         }
 
                         applyBindingsToDescendants(childContext, element);
@@ -5966,7 +5965,7 @@
             throw new Error('Component \'' + componentName + '\' has no template');
         }
         let clonedNodesArray = cloneNodes(template);
-        setDomNodeChildren$1(element, clonedNodesArray);
+        setDomNodeChildren(element, clonedNodesArray);
     };
 
     const _createViewModel = (componentDefinition, componentParams, componentInfo) => {
@@ -6073,7 +6072,7 @@
             emptyNode,
             insertAfter,
             prepend,
-            setDomNodeChildren: setDomNodeChildren$1
+            setDomNodeChildren
         },
         bindingProvider: KoBindingProvider,
         get getBindingHandler() { return getBindingHandler; },
@@ -6117,5 +6116,5 @@
 
     return ko;
 
-})));
+}));
 //# sourceMappingURL=knockout.debug.js.map

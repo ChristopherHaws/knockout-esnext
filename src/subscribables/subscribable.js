@@ -30,13 +30,13 @@ export const hasSubscribableChanged = (subscribable, versionToCheck) => subscrib
 /**
  * @param subscribable
  * cleaner but slower would be { [DEFAULT_EVENT]: [] } instead of {change: []}
- * TODO remove the && once macros with function bodies are supported 
+ * TODO remove the && once macros with function bodies are supported
  */
-export const initSubscribableInternal = (subscribable) => (subscribable._subscriptions = {change: []}) && (subscribable._versionNumber = 1); //@inline-global 
+export const initSubscribableInternal = (subscribable) => (subscribable._subscriptions = {change: []}) && (subscribable._versionNumber = 1); //@inline-global
 
 export const SUBSCRIBABLE_PROTOTYPE = {
     [IS_SUBSCRIBABLE]: true,
-    
+
     init(instance) {
         initSubscribableInternal(instance);
     },
@@ -59,7 +59,7 @@ export const SUBSCRIBABLE_PROTOTYPE = {
             this.beforeSubscriptionAdd(event);
         }
         let _subscriptions = this._subscriptions,
-            existingSubscriptionsForEvent = _subscriptions[event]; 
+            existingSubscriptionsForEvent = _subscriptions[event];
         if (existingSubscriptionsForEvent) {
             existingSubscriptionsForEvent.push(subscription);
         } else {
@@ -95,8 +95,8 @@ export const SUBSCRIBABLE_PROTOTYPE = {
     },
 
     /**
-     * Only for external use. 
-     * KO-internally use {@link hasSubscribableChanged} macro directly to save another function call 
+     * Only for external use.
+     * KO-internally use {@link hasSubscribableChanged} macro directly to save another function call
      * @param {number} versionToCheck
      * @return {boolean}
      */
@@ -106,10 +106,10 @@ export const SUBSCRIBABLE_PROTOTYPE = {
 
     limit(limitFunction) {
         let selfIsObservable = isObservable(this),
-            ignoreBeforeChange, 
-            notifyNextChange, 
-            previousValue, 
-            pendingValue, 
+            ignoreBeforeChange,
+            notifyNextChange,
+            previousValue,
+            pendingValue,
             didUpdate,
             beforeChange = 'beforeChange';
 
@@ -163,7 +163,7 @@ export const SUBSCRIBABLE_PROTOTYPE = {
     getSubscriptionsCount(event) {
         let event2subscriptions = this._subscriptions;
         if (event) {
-            let subscriptions = event2subscriptions[event]; 
+            let subscriptions = event2subscriptions[event];
             return subscriptions ? subscriptions.length : 0;
         }
         let total = 0;
@@ -194,7 +194,7 @@ export const SUBSCRIBABLE_PROTOTYPE = {
  * @constructor
  */
 export const Subscribable = function () {
-    initSubscribableInternal(this);
+    Subscribable.fn.init(this);
 };
 
 Subscribable.prototype = SUBSCRIBABLE_PROTOTYPE;

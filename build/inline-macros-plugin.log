@@ -1,6 +1,6 @@
 
 Running Rollup inline-macros plugin
-for Knockout-ESNext JavaScript library v3.5.1026
+for Knockout JavaScript library v3.5.1026
 
 
 ------- src/binding/bindingAttributeSyntax.js --------
@@ -505,11 +505,6 @@ Inlined: "hasSubscribableChanged" (global macro)
 OLD:  return hasSubscribableChanged(this, versionToCheck);
 NEW:  return (this.getVersion() !== versionToCheck);
 
-[subscribable.js:197]
-Inlined: "initSubscribableInternal" (global macro)
-OLD:  initSubscribableInternal(this);
-NEW:  ((this._subscriptions = {change: []}) && (this._versionNumber = 1));
-
 
 ------- src/templating/templateSources.js --------
 
@@ -788,7 +783,7 @@ Global macros inlining summary:
  4x  updateSubscribableVersion  - [src/subscribables/subscribable.js:20]
  5x  hasSubscriptionsForEvent  - [src/subscribables/subscribable.js:22]
  2x  hasSubscribableChanged  - [src/subscribables/subscribable.js:28]
- 4x  initSubscribableInternal  - [src/subscribables/subscribable.js:35]
+ 3x  initSubscribableInternal  - [src/subscribables/subscribable.js:35]
 
 Local macros inlining summary:
  4x  _getBindingInfoForNode  - [src/binding/bindingAttributeSyntax.js:37]
@@ -811,5 +806,5 @@ Local macros inlining summary:
 
 =======================================================
 Rollup inline-macros plugin finished successfully
-Inlined 103 usages of 29 macros (12 global) in 19 files
+Inlined 102 usages of 29 macros (12 global) in 19 files
 =======================================================
