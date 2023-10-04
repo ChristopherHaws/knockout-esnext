@@ -11,7 +11,7 @@
     ".": {
       "import": {
         "types": "./build/types/knockout.d.ts",
-        "default": "./build/knockout.esm.js"
+        "default": "./build/knockout-latest.esm.mjs"
       },
       "require": {
         "types": "./build/types/knockout.d.ts",

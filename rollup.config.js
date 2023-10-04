@@ -56,7 +56,7 @@ export default {
         },
         {   // the minified ES Module version
             format: 'esm',
-            file: 'build/output/knockout-latest.esm.mjs',
+            file: 'build/knockout-latest.esm.mjs',
             banner: getBanner(),
             intro: getIntro(),
             sourcemap: false,
@@ -65,7 +65,7 @@ export default {
         },
         {   // the non-minified ES Module debug version
             format: 'esm',
-            file: 'build/output/knockout-latest.esm.debug.mjs',
+            file: 'build/knockout-latest.esm.debug.mjs',
             banner: getBanner(),
             intro: getIntro(),
             sourcemap: true,
