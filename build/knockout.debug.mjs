@@ -6110,4 +6110,4 @@ const ko = {
 _setKoReferenceForBindingContexts(ko);
 
 export { ko as default };
-//# sourceMappingURL=knockout-latest.esm.debug.mjs.map
+//# sourceMappingURL=knockout.debug.mjs.map

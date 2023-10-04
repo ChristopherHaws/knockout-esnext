@@ -11,7 +11,7 @@
     ".": {
       "import": {
         "types": "./build/types/knockout.d.ts",
-        "default": "./build/knockout-latest.esm.mjs"
+        "default": "./build/knockout.mjs"
       },
       "require": {
         "types": "./build/types/knockout.d.ts",
@@ -23,7 +23,7 @@
     "prepublish": "npm run test",
     "pretest": "npm run build",
     "test": "node spec/runner.node.js",
-    "prebuild": "npm run lint && rimraf -V -g build/knockout*.js build/*.log build/*.map",
+    "prebuild": "npm run lint && rimraf -V -g build/knockout*.{js,mjs} build/*.log build/*.map",
     "build": "rollup -c",
     "lint": "eslint --max-warnings 0 src/",
     "test-types": "tsc -p spec/types/global && tsc -p spec/types/module"
